@@ -137,5 +137,20 @@ public class Operators {
         System.out.printf("b%32s\n", Integer.toBinaryString(1252 | 15234));
         System.out.printf("b%32s\n", Integer.toBinaryString(1252 ^ 15234));
         System.out.printf("b%32s\n", Integer.toBinaryString(~1252)); //논리연산자처럼 보이지만 비트연산자이다.
+
+        int a = 0;
+        int b = 0;
+
+        System.out.println(a>0 & b>0);
+        System.out.println(a++ > 0 & b++ > 0);
+        System.out.println(a + " , " + b);
+
+        a = 0;
+        b = 0;
+        System.out.println(a++ > 0 && b++ > 0);
+        System.out.println(a + " , "+ b);
+
+        // && -> 하나만 거짓이여도 뒤에것은 계산하지 않음
+        // || -> 하나만 참이여도 뒤에것은 계산하지 않음
     }
 }
