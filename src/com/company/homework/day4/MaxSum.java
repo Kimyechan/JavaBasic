@@ -15,7 +15,7 @@ package com.company.homework.day4;
 
 public class MaxSum {
     public static void main(String[] args) {
-        int [] integers = {-4, 7, 14, 9, -5, 4, 16, -22, 31, 10};
+        int [] integers = {-4, 5, 12, -7, 52, -5, 7};
         // write codes here
 
         int [] sumArray = new int[(integers.length * (integers.length + 1)) / 2];
@@ -27,7 +27,7 @@ public class MaxSum {
             sum = 0;
             for(int j = i; j < integers.length; j++) {
                 sum = 0;
-                for(int k = i; k < j; k++) {
+                for(int k = i; k <= j; k++) {
                     sum += integers[k];
                 }
                 sumArray[sumIndex] = sum;
@@ -46,3 +46,4 @@ public class MaxSum {
         System.out.println("Max = " + max);
     }
 }
+
