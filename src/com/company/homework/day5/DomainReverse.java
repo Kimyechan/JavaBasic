@@ -5,6 +5,11 @@ import java.util.List;
 
 public class DomainReverse {
     public static void main(String[] args) {
+        solution1();
+        solution2();
+    }
+
+    private static void solution1(){
         String domain = "www.google.com";
         char [] domainChar = domain.toCharArray();
         List<String> stringArray = new ArrayList<>();
@@ -38,5 +43,20 @@ public class DomainReverse {
             System.out.print(stringArrayReverse.get(i) + ".");
         }
         System.out.println(stringArrayReverse.get(stringArrayReverse.size() - 1));
+    }
+
+    private static void solution2() {
+        String domain = "www.google.com";
+        String[] domainArray = domain.split("\\.");
+
+        StringBuffer domainReverse = new StringBuffer();
+
+        for(int i = 0; i < domainArray.length - 1; i++) {
+            StringBuffer reverseValue = new StringBuffer(domainArray[i]);
+            domainReverse.append(reverseValue.reverse()+".");
+        }
+        StringBuffer reverseValue = new StringBuffer(domainArray[domainArray.length -1]);
+        domainReverse.append(reverseValue.reverse());
+        System.out.println(domainReverse);
     }
 }
