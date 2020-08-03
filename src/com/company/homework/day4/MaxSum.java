@@ -44,6 +44,18 @@ public class MaxSum {
         System.out.println("");
 
         System.out.println("Max = " + max);
+
+//        ===============강사님 풀이====================
+//        int [] integers = {-4, 7, 14, 9, -5, 4, 16, -22, 31};
+//
+//        int maxSum = 0;
+//        int currentSum = 0;
+//        for (int elem: integers) {
+//            currentSum += elem;
+//            currentSum = currentSum > elem ? currentSum : elem;
+//            maxSum = maxSum > currentSum ? maxSum : currentSum;
+//        }
+//        System.out.println(maxSum);
     }
 }
 
