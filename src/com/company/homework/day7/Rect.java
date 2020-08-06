@@ -68,8 +68,25 @@ public class Rect extends RectCore {
         float tempX = pos.x;
         float tempY = pos.y;
 
+        float temp = w;
+        w = h;
+        h = temp;
+
         pos.x = tempY - pivot.y + pivot.x;
         pos.y = (tempX - pivot.x)*(-1) + pivot.y;
+
+    }
+
+    public void rot90LeftBottom(Vector2D pivot) {
+        float tempX = pos.x;
+        float tempY = pos.y;
+
+        pos.x = tempY - pivot.y + pivot.x;
+        pos.y = (tempX - pivot.x)*(-1) + pivot.y - w;
+
+        float temp = w;
+        w = h;
+        h = temp;
     }
 
 }
@@ -81,7 +98,25 @@ class RectTest {
         System.out.println("CoM: " + rect.getCenterOfMass());
         System.out.println("All Points: " + Arrays.toString(rect.getAllPoints()));
 
+        Rect rect2 = new Rect(0.5f, 0.7f, 1.5f, 2.3f);
+
         rect.rot90(new Vector2D(0.4f, 0.2f));
         System.out.println("Rotated rect: " + rect);
+
+        rect2.rot90LeftBottom(new Vector2D(0.4f, 0.2f));
+        System.out.println("Rotated rect: " + rect2);
+
+//        rect.rot90(new Vector2D(0.4f, 0.2f));
+//        System.out.println("Rotated rect: " + rect);
+//
+//        rect2.rot90LeftBottom(new Vector2D(0.4f, 0.2f));
+//        System.out.println("Rotated rect: " + rect2);
+//
+//        rect.rot90(new Vector2D(0.4f, 0.2f));
+//        System.out.println("Rotated rect: " + rect);
+//
+//        rect2.rot90LeftBottom(new Vector2D(0.4f, 0.2f));
+//        System.out.println("Rotated rect: " + rect2);
+
     }
 }
