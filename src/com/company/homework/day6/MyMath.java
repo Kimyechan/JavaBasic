@@ -92,11 +92,19 @@ public class MyMath {
     }
 
     static int floor(double value) {
-        return (int)(value + 1);
+        if(value > 0){
+            return (int)value;
+        } else {
+            return (int)(value-1);
+        }
     }
 
     static int ceil(double value){
-        return (int)(value);
+        if(value > 0){
+            return (int)(value + 1);
+        } else {
+            return (int)(value);
+        }
     }
 }
 
@@ -110,7 +118,7 @@ class MyMathTest {
         System.out.println(MyMath.abs(5));
         System.out.println(MyMath.abs(-2.3));
         System.out.println(MyMath.floor(-1.5232));
-        System.out.println(MyMath.ceil(4.6452));
+        System.out.println(MyMath.ceil(-4.6452));
 //        System.out.println(MyMath.rounds(-1.5232));
 //        System.out.println(MyMath.rounds(4.4452));
     }
