@@ -66,7 +66,7 @@ class IGIFooTwo<T> extends GFoo<T> implements IGFoo<T> {
 
 // 타입 제한 하지않으면 extends Object와 동일하다.
 class GenericNoTypeLimit<T extends Object> {}
-class GenericTypeLimitation<T extends Number & Cloneable>{ //Number 상속하면서 Cloneable 구현하는 T
+class GenericTypeLimitation<T extends Number& Cloneable>{ //Number 상속하면서 Cloneable 구현하는 T
 
 }
 
