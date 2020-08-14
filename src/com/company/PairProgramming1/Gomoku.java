@@ -7,6 +7,8 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
     Player p1;
     Player p2;
 
+    Position position= null;
+
     int flag=-1;
     public Gomoku(Player p1, Player p2){
         this.p1 = p1;
@@ -22,6 +24,7 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
             this.arr[pos.getX()][pos.getY()] = "O";
             System.out.println("백돌 놓음");
         }
+        position = pos;
         printStatus();
         isFinished();
         threeThree(pos.getX(), pos.getY());
@@ -60,13 +63,195 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
     @Override
     public void isFinished() { // 끝났는지 확인
         int f=1;
-        for(int i = 0; i < 15; i++){
-                for(int j = 0; j < 15; j++){
-                if(arr[i][j].equals("-")){
-                    continue;
-                } else {
-                    check_Win(i, j);
+
+        int x = position.getX(); // 방금 돌을 놓은 위치 x
+        int y = position.getY(); // 방금 돌을 놓은 위치 y
+        //세로 체크
+        int cnt = 1;
+        if(arr[x][y].equals("X")){ // 흑돌
+            for(int i=1; i<5; i++){
+                if(x + i >= 15)
+                    break;
+                if(arr[x+i][y].equals("X")){
+                    cnt++;
                 }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){
+                if(x - i < 0)
+                    break;
+                if(arr[x-i][y].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }else{
+            for(int i=1; i<5; i++){
+                if(x + i >= 15)
+                    break;
+                if(arr[x+i][y].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){
+                if(x - i < 0)
+                    break;
+                if(arr[x-i][y].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }
+        //가로 체크
+        cnt = 1;
+        if(arr[x][y].equals("X")){ // 흑돌
+            for(int i=1; i<5; i++){
+                if(y+i>=15)
+                    break;
+                if(arr[x][y+i].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){
+                if(y-i<0)
+                    break;
+                if(arr[x][y-i].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }else{
+            for(int i=1; i<5; i++){
+                if(y+i>=15)
+                    break;
+                if(arr[x][y+i].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){
+                if(y-i<0)
+                    break;
+                if(arr[x][y-i].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }
+        // 왼쪽 위에서 오른쪽 아래 대각선 방향
+        cnt = 1;
+        if(arr[x][y].equals("X")){ // 흑돌
+            for(int i=1; i<5; i++){ // 아래로 체크
+                if(x + i >= 15 || y + i >= 15)
+                    break;
+                if(arr[x+i][y+i].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){ // 위로 체크
+                if(x - i < 0 || y - i < 0)
+                    break;
+                if(arr[x-i][y-i].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }else{
+            for(int i=1; i<5; i++){ // 아래로 체크
+                if(x + i >= 15 || y + i >= 15)
+                    break;
+                if(arr[x+i][y+i].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){ // 위로 체크
+                if(x - i < 0 || y - i < 0)
+                    break;
+                if(arr[x-i][y-i].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }
+        // 오른쪽 위에서 왼쪽 아래 대각선
+        cnt = 1;
+        if(arr[x][y].equals("X")){ // 흑돌
+            for(int i=1; i<5; i++){ // 아래로 체크
+                if(x + i >= 15 || y - i < 0)
+                    break;
+                if(arr[x+i][y-i].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){ // 위로 체크
+                if(x - i < 0 || y + i >= 15)
+                    break;
+                if(arr[x-i][y+i].equals("X")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
+            }
+        }else{
+            for(int i=1; i<5; i++){ // 아래로 체크
+                if(x + i >= 15 || y - i < 0)
+                    break;
+                if(arr[x+i][y-i].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            for(int i=1; i<5; i++){ // 위로 체크
+                if(x - i < 0 || y + i >= 15)
+                    break;
+                if(arr[x-i][y+i].equals("O")){
+                    cnt++;
+                }
+                else
+                    break;
+            }
+            if(cnt == 5){ // 오목이 된 경우
+                check_Winner(x, y);
             }
         }
     }
@@ -105,75 +290,6 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
         reset();
     }
 
-    public void check_Win(int i, int j){
-        int f = 1;
-        int z = j;
-        for(int k=i; k<i+5; k++){ // 아래쪽 체크
-            if(k>=15 || k<0) {
-                f = -1;
-                break;
-            }
-            if(!arr[k][j].equals(arr[i][j])){
-                f = -1;
-                break;
-            }
-        }
-        if(f==1){
-            check_Winner(i, j);
-            return;
-        }
-        f=1;
-        for(int k=i; k<i+5; k++){ // 오른쪽 아래 대각선 체크
-            if(k>=15 || k<0 || z>=15 || z<0) {
-                f = -1;
-                break;
-            }
-            if(!arr[k][z].equals(arr[i][j])){
-                f = -1;
-                break;
-            }
-            z++;
-        }
-        if(f==1){
-            check_Winner(i, j);
-            return;
-        }
-        f=1;
-        z = j;
-        for(int k=j; k<j+5; k++){ // 오른쪽 체크
-            if(k>=15 || k<0) {
-                f = -1;
-                break;
-            }
-            if(!arr[i][k].equals(arr[i][j])){
-                f = -1;
-                break;
-            }
-        }
-        if(f==1){
-            check_Winner(i, j);
-            return;
-        }
-        f=1;
-        if(i-5>=0) {
-            for (int k = i; k > i - 5; k--) { // 왼쪽 아래 대각선 체크
-                if (k >= 15 || k < 0 || z >= 15 || z < 0) {
-                    f = -1;
-                    break;
-                }
-                if (!arr[k][z].equals(arr[i][j])) {
-                    f = -1;
-                    break;
-                }
-                z++;
-            }
-            if (f == 1) {
-                check_Winner(i, j);
-                return;
-            }
-        }
-    }
-
     public void threeThree(int x, int y){
         int threeCount = 0;
         int threeCountEach = 0;
@@ -186,7 +302,7 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
                     continue;
 
                 // 가로
-                for(int i = Math.max(h - 2, 0); i <= Math.min(h + 2, 14); i++){
+                for(int i = Math.max(h - 3, 0); i <= Math.min(h + 3, 14); i++){
                     if(arr[k][i].equals(arr[k][h])){
                         threeCountEach++;
                     } else {
@@ -202,7 +318,7 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
                 threeCountEach = 0;
 
                 //세로
-                for(int i = Math.max(k - 2, 0); i <= Math.min(k + 2, 14); i++){
+                for(int i = Math.max(k - 3, 0); i <= Math.min(k + 3, 14); i++){
                     if(arr[i][h].equals(arr[k][h])){
                         threeCountEach++;
                     } else {
@@ -219,8 +335,8 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
                 threeCountEach = 0;
 
                 //대각선 왼쪽 아래에서 오른쪽 위로
-                int z = Math.max(h - 2, 0);
-                for(int i = Math.min(k + 2, 14); i >= Math.max(k - 2, 0); i--){
+                int z = Math.max(h - 3, 0);
+                for(int i = Math.min(k + 3, 14); i >= Math.max(k - 3, 0); i--){
                     if(z>=15 || z<0)
                         break;
                     if(arr[i][z].equals(arr[k][h])){
@@ -239,8 +355,8 @@ public class Gomoku implements Simulatable, Winnable, Playable, Printable {
                 threeCountEach = 0;
 
                 //왼쪽 위에서 오른쪽 아래로
-                z = Math.max(h - 2, 0);
-                for(int i = Math.max(k - 2, 0); i <= Math.min(k + 2,14); i++){
+                z = Math.max(h - 3, 0);
+                for(int i = Math.max(k - 3, 0); i <= Math.min(k + 3,14); i++){
                     if(z>=15 || z<0)
                         break;
                     if(arr[i][z].equals(arr[k][h])){

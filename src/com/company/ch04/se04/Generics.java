@@ -5,7 +5,7 @@ package com.company.ch04.se04;
  * - 대상 객체의 타입을 입력받아서 사용하는 형식
  * - 미리 사용할 수 있는 타입을 명시해서 컴파일 타임에 체크 가능
  * - 입력을 Object로 할 수도 있으나, 런타입에 instanceof로 객체를 체크해야 함
- * - 제네릭을 사용할 경우 이러한 과정 없이 간결하게 코드 작성르 할 수 있다.
+ * - 제네릭을 사용할 경우 이러한 과정 없이 간결하게 코드 작성를 할 수 있다.
  */
 
 // 제네릭 클래스
@@ -130,5 +130,7 @@ public class Generics {
 
         WildCard wildCard = new WildCard();
 //        wildCard.method2(new WildGeneric<Integer>());
+        wildCard.method3(new WildGeneric<Object>());
+
     }
 }
