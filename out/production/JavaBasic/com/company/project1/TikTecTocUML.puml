@@ -1,0 +1,33 @@
+@startuml
+
+class Game{
+    - Player player1
+    - Player player2
+
+    + void start()
+    + void finish()
+
+}
+
+interface Player{
+    + void getInputXY(int x, int y)
+
+}
+
+class HumanPlayer {
+    - String name
+    - Position position
+}
+
+class AIPlayer{
+    - Position position
+}
+
+class Position{
+ - int x
+ - int y
+}
+
+Player <|- HumanPlayer
+Player <|- AIPlayer
+@enduml

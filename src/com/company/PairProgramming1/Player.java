@@ -27,7 +27,8 @@ public class Player implements Inputtable {
                 System.out.println("범위를 초과했습니다. 다시 입력해주세요");
                 continue;
             }
-            if(g.arr[x][y].equals("-")){
+            if(
+                    g.arr[x][y].equals("-")){
                 flag = -1;
                 position = new Position(x, y);
             }

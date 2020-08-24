@@ -1,0 +1,58 @@
+@startuml
+
+class Game{
+    - Player player1
+    - Player player2
+    - String[][] board;
+    - int gameWinNumber;
+
+    + void start()
+    + void initialize()
+    + void printScore()
+    + void printBoard(Player player)
+    + boolean isFinishedWin()
+    + boolean isFinishedDraw()
+
+}
+
+interface Player{
+    + void getInputXY(int x, int y)
+
+}
+
+class HumanPlayer {
+    - String name
+    - Position position
+    + static Game g;
+    -  int winNum;
+}
+
+class AIPlayer{
+    + static Game g;
+    - Position position;
+    - int winNum;
+
+    + Position attackOrDefend()
+}
+
+class AdvancedAIPlayer{
+    + static Game g;
+    - int winNum;
+    - int caseNum;
+    - int motionOrderNum = 0;
+
+}
+class Position{
+ - int x
+ - int y
+}
+
+Player <|- HumanPlayer
+Player <|- AIPlayer
+AIPlayer <|-- AdvancedAIPlayer
+HumanPlayer *- Position
+AIPlayer *- Position
+Game *- HumanPlayer
+Game *- AIPlayer
+
+@enduml
