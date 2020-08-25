@@ -28,11 +28,11 @@ public class AdvancedAIPlayer extends AIPlayer{
             return new Position(3, 1);
         } else if (motionOrderNum == 1) {
             if (board[1][1].equals("-")) {
-                if (board[0][0].equals("-") && board[1][0].equals("-")) {
+                if (board[0][0].equals("-") && board[1][0].equals("-") && board[1][2].equals("-")) {
                     motionOrderNum++;
                     caseNum = 11;
                     return new Position(1, 1);
-                } else if (board[2][2].equals("-") && board[2][1].equals("-")) {
+                } else if (board[2][2].equals("-") && board[2][1].equals("-") && board[0][1].equals("-")) {
                     motionOrderNum++;
                     caseNum = 33;
                     return new Position(3, 3);
@@ -41,29 +41,21 @@ public class AdvancedAIPlayer extends AIPlayer{
                 return attackOrDefend();
             }
         } else if (motionOrderNum == 2) {
-            if ((board[1][0].equals("-") && caseNum == 11) || (board[2][1].equals("-")) && caseNum == 33) {
-                return attackOrDefend();
-            } else {
-                if (board[0][0].equals("-") && board[1][0].equals("-")) {
-                    motionOrderNum++;
-                    return new Position(1, 1);
-                } else if (board[0][2].equals("-") && board[1][2].equals("-")) {
-                    motionOrderNum++;
+            if(caseNum == 11){
+                if(board[0][1].equals("-") && board[0][2].equals("-")){
                     return new Position(1, 3);
+                } else if(board[2][1].equals("-") && board[2][2].equals("-")){
+                    return new Position(3, 3);
                 }
-//                else if(board[2][2].equals("-")){
-//                    motionOrderNum++;
-//                    return new Position(3, 3);
-//                }
-            }
-        } else if (motionOrderNum == 3) {
-            if (board[2][2].equals("-")) {
-                return new Position(1, 2);
-            } else if (board[2][0].equals("-")) {
-//                return new Position(2, 2);
-                return attackOrDefend();
             }
         }
+//        else if (motionOrderNum == 3) {
+//            if (board[2][2].equals("-")) {
+//                return new Position(1, 2);
+//            } else if (board[2][0].equals("-")) {
+//                return attackOrDefend();
+//            }
+//        }
         System.out.println("last !!!");
         return attackOrDefend();
     }

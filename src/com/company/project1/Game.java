@@ -45,6 +45,7 @@ public class Game {
             } else {
                 if(isFinishedDraw()){
                     System.out.println("비겼습니다.!!!");
+                    printScore();
                     initialize();
                     continue;
                 }
@@ -59,6 +60,7 @@ public class Game {
 
             if(isFinishedDraw()){
                 System.out.println("비겼습니다.!!!");
+                printScore();
                 initialize();
             }
         }
@@ -161,6 +163,7 @@ public class Game {
         if(player1 instanceof AdvancedAIPlayer){
             ((AdvancedAIPlayer) player1).setMotionOrderNum(0);
         }
+
         System.out.println("현재 스코어 : " + player1.getWinNum() + "-" + player2.getWinNum());
     }
 }
