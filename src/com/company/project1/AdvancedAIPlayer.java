@@ -49,14 +49,7 @@ public class AdvancedAIPlayer extends AIPlayer{
                 }
             }
         }
-//        else if (motionOrderNum == 3) {
-//            if (board[2][2].equals("-")) {
-//                return new Position(1, 2);
-//            } else if (board[2][0].equals("-")) {
-//                return attackOrDefend();
-//            }
-//        }
-        System.out.println("last !!!");
+
         return attackOrDefend();
     }
 }

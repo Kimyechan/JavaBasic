@@ -16,12 +16,7 @@ public class AIPlayer implements Player {
     @Override
     public Position getInput() {
         System.out.println("AI가 수를 두었습니다.");
-//        int x = (int)(Math.random() * 100) % 3 + 1;
-//        int y = (int)(Math.random() * 100) % 3 + 1;
-//
-//        position = new Position(x, y);
-//
-//        return position;
+
         return attackOrDefend();
     }
 
@@ -41,7 +36,6 @@ public class AIPlayer implements Player {
                 }
 
                 if((countAI == 2 && countHM == 0)){
-                    System.out.println("가로20");
                     for (int k = 0; k < 3; k++) {
                         if (board[i][k].equals("-")) {
                             return new Position(i + 1, k + 1);
@@ -62,7 +56,6 @@ public class AIPlayer implements Player {
                 }
 
                 if ((countAI == 0 && countHM == 2)) {
-                    System.out.println("가로02");
                     for (int k = 0; k < 3; k++) {
                         if (board[i][k].equals("-")) {
                             return new Position(i + 1, k + 1);
@@ -83,7 +76,6 @@ public class AIPlayer implements Player {
                 }
 
                 if((countAI == 2 && countHM == 0)){
-                    System.out.println("세로20");
                     for (int k = 0; k < 3; k++) {
                         if (board[k][i].equals("-")) {
                             return new Position(k + 1, i + 1);
@@ -104,7 +96,6 @@ public class AIPlayer implements Player {
                 }
 
                 if ((countAI == 0 && countHM == 2)) {
-                    System.out.println("세로02");
                     for (int k = 0; k < 3; k++) {
                         if (board[k][i].equals("-")) {
                             return new Position(k + 1, i + 1);
@@ -124,7 +115,6 @@ public class AIPlayer implements Player {
             }
 
             if((countAI == 2 && countHM == 0)){
-                System.out.println("왼위20");
                 for (int k = 0; k < 3; k++) {
                     if (board[k][k].equals("-")) {
                         return new Position(k + 1, k + 1);
@@ -143,7 +133,6 @@ public class AIPlayer implements Player {
             }
 
             if ((countAI == 0 && countHM == 2)) {
-                System.out.println("왼위02");
                 for (int k = 0; k < 3; k++) {
                     if (board[k][k].equals("-")) {
                         return new Position(k + 1, k + 1);
@@ -162,7 +151,6 @@ public class AIPlayer implements Player {
             }
 
             if((countAI == 2 && countHM == 0)){
-                System.out.println("오위20");
                 for (int k = 0; k < 3; k++) {
                     if (board[k][2 - k].equals("-")) {
                         return new Position(k + 1, 2 - k + 1);
@@ -181,7 +169,6 @@ public class AIPlayer implements Player {
             }
 
             if ((countAI == 0 && countHM == 2)) {
-                System.out.println("오위02");
                 for (int k = 0; k < 3; k++) {
                     if (board[k][2 - k].equals("-")) {
                         return new Position(k + 1, 2 - k + 1);
