@@ -2,9 +2,9 @@
 
 ## UML
 
-![](/Users/kimyechan/work/study/JavaBasic/src/com/company/project1/UML.png)
+![](./UML.png)
 
-![](/Users/kimyechan/work/study/JavaBasic/src/com/company/project1/TikTecToeUML.png)
+![](./TikTecToeUML.png)
 - HumanPlayer and AIPlayer implement interface Player
 - AdvancedPlayer extends AIPlayer
 
