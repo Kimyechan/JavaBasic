@@ -1,5 +1,7 @@
 package com.company.ch02.se01;
 
+import javax.crypto.spec.ChaCha20ParameterSpec;
+
 /**
  * 변수
  * 변하는 수, 수학의 변수와 유사하다.
@@ -37,6 +39,5 @@ public class Variable {
         //클래스, 인터페이스, Enum, 애너테이션은 PascalCase
 
         int _8thWord;
-
     }
 }

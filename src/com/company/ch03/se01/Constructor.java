@@ -9,7 +9,7 @@ package com.company.ch03.se01;
  * 파라미터 생성자(Parameter Constructor)
  *  -> 여러개의 생성자를 오버로딩 할 수 있다.
  */
-public class Constructor {
+public class Constructor{
     int x;
     int y;
     String z;
@@ -33,6 +33,12 @@ public class Constructor {
 
     public Constructor(int a, int b) {
         this(a, b, ""); //this는 무조건 첫 줄에 단 한번만 사용가능
+    }
+
+    public Constructor(int[] integers){
+        this();
+        this.x = integers[0];
+        this.y = integers[1];
     }
 }
 
