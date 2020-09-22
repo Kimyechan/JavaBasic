@@ -168,7 +168,7 @@ class BarTwo extends Foo{
 }
 
 class BarThree extends Foo{
-    // void methodA() throws Exception {}
+//     void methodA() throws Exception {}
     // 부모 클래싀의 메소드를 오버라이드 할 때는
     // 부모 클래스의 메소드의 예외보다 더 조상인 예외는 던질 수 없다.
     // 오버라이딩할 때 구현하는 내용을 어느정도 제한하고 있는 부분

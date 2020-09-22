@@ -9,10 +9,12 @@ class Outer {
             Outer outer = new Outer();
             System.out.println(outer.outerVar); // 이상하지만... 받아들이세요.
             System.out.println(innerVar);
+            System.out.println(outerVarStatic);
         }
     }
 
     private int outerVar = 2;
+    static private int outerVarStatic = 3;
 
     void outerMethod() {
         ClassInner inner = new ClassInner();

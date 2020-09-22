@@ -7,13 +7,15 @@ class LocalInnerClass {
         final int y1 = 2;
         int y2 = 2;
 
-        class LocalInner {
+        class LocalInner { // 스택영역에 정의
             // static int z = 4; // **Impossible**
-            static final int Z = 4; // Possible
+            static final int z = 4; // Possible의 // 상수풀에 저
+            int w = 5;
             void methodA() {
                 System.out.println(x);
                 System.out.println(y1); // JDK1.7
-
+                System.out.println(w);
+                w++;
                 System.out.println(y2); // JDK1.8
                 //y2++; // final 처럼 사용되어야 함
             }
