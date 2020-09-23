@@ -52,7 +52,7 @@ public class Main {
         System.out.println(Arrays.toString(strings));
 
         // 방법 4. 람다식을 이용하는 방식
-        Arrays.sort(strings, (o1, o2)->{
+        Arrays.sort(strings, (o1, o2) ->{
             return o1.substring(3).compareTo(o2.substring(3));
         });
         System.out.println(Arrays.toString(strings));
