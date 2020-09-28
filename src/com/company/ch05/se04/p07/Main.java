@@ -4,8 +4,8 @@ import java.util.function.*;
 
 /**
  * Function 계열
- * - Mapping: 입력 -> 출력의 Mapping을 하는 함수형 인터페이스
- * - 입력 타입과 출력 탕빙느 다를 수 있다.
+ * - Mapping: 입력 -> 출력을 Mapping을 하는 함수형 인터페이스
+ * - 입력 타입과 출력 타입 다를 수 있다.
  */
 public class Main {
     public static void main(String[] args) {

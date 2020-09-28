@@ -1,4 +1,4 @@
-package ch5.s05.p12;
+package com.company.ch05.se04.p12;
 
 import java.util.function.BinaryOperator;
 

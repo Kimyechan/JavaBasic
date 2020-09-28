@@ -1,4 +1,4 @@
-package ch5.s05.p13;
+package com.company.ch05.se04.p13;
 
 import java.util.Arrays;
 import java.util.function.Function;

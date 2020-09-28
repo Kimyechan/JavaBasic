@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 
 /**
  * Supplier 계열
- * - 아무런 입력을 받지 않고, 값을 하나 반환하는ㄴ 함수형 인터페이스
+ * - 아무런 입력을 받지 않고, 값을 하나 반환하는 함수형 인터페이스
  * - 자료를 '공급'하는 역할을 한다.
  */
 public class Main {

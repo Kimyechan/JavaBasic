@@ -2,14 +2,8 @@ package com.company.ch05.se05.p01;
 
 import org.w3c.dom.ls.LSOutput;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.LongStream;
-import java.util.stream.Stream;
+import java.util.*;
+import java.util.stream.*;
 
 /**
  * Stream API
@@ -17,7 +11,7 @@ import java.util.stream.Stream;
  * 컬렉션 요소를 람다식으로 처리할 수 있도록 돕는 함수형 프로그래밍 도구
  * - 간결한 코드로 작성할 수 있다.
  * - 데이터 소스에 대한 공통된 접근 방식 제공
- *  - Stream으로 변경해주고 나면, List, Set, Map 모두 동일한 방식으로 데이터를 처리
+ * - Stream으로 변경해주고 나면, List, Set, Map 모두 동일한 방식으로 데이터를 처리
  */
 public class Main {
     public static void main(String[] args) {
@@ -83,10 +77,14 @@ public class Main {
         stringStream = Stream.of("Java", "Is", "Fun", "Isn't", "It", "?");
         stringStream.filter(s -> s.length() >= 3)
                 .forEach(System.out::println);
+        System.out.println("");
 
         // 자르기(Cutting)
-        // skip(long n): 스트림의 최초 n개만 남기고 나머지는 생략하는 메소드
+        // skip(long n): 스트림의 최초 n개를 건너뛰고 나머지만
         // limit(long maxSize): 스트림의 최대 요소 개수를 maxSize로 제한
+        stringStream = Stream.of("Java", "Is", "Fun", "Isn't", "It", "?");
+        stringStream.skip(4).forEach(System.out::println);
+        System.out.println("!!!!!!!");
 
         // 정렬(Sorting)
         // Comparable 인터페이스의 compareTo 메소드로 정렬
@@ -126,7 +124,6 @@ public class Main {
                 .count();
 
 
-
         // 최종처리 메소드 - 스트림을 반환하지 않음(void일 수도 있고, 무언가 리턴 할 수도 있다.)
         // 매칭 계열턴 - boolean 타입의 값을 리턴
         // allMatch(), anyMatch(), noneMatch()
@@ -151,7 +148,7 @@ public class Main {
         System.out.println(IntStream.range(0, 10) // sum()
                 .reduce(0, (value1, value2) -> value1 + value2));
         System.out.println(IntStream.range(0, 10) // min()
-                .reduce(Integer.MAX_VALUE, (value1, value2) -> value1  < value2 ? value1 : value2));
+                .reduce(Integer.MAX_VALUE, (value1, value2) -> value1 < value2 ? value1 : value2));
 
 
         // 반복 - 소비
@@ -160,5 +157,60 @@ public class Main {
 
         // 수집 - Collection으로 변환하는 collect() 메소드
         // Stream API는 JCF -> Stream -> 처리 -> 결과(출력, 값, Collection)
+
+        //Collectors 클래스의 정적 메소드를 이용하는 방법
+        // toList() 메소드를 쓸 경우, ArrayList로 collect하는 Collector 반환
+        String[] array = {"Collection", "Framework", "is", "so", "cool"};
+        Stream<String> stream3 = Arrays.stream(array);
+        List<String> collected = stream3.filter(s -> s.length() >= 3)
+//                                    .collect(Collectors.toList()); //ArrayList
+                                    .collect(Collectors.toCollection(LinkedList::new));
+        System.out.println(collected);
+
+        // toSet() 메소드를 쓸 경우, HashSet으로 collect하는 Collector 반환
+        Stream<String> stream4 = Arrays.stream(array);
+        Set<String> collected2 = stream4.filter(s -> s.length() >= 3)
+//                                    .collect(Collectors.toSet()); // HashSet
+                                    .collect(Collectors.toCollection(HashSet::new));
+        System.out.println(collected2);
+
+        //Map<K, V> Map.Entry<K, V>
+        Stream<String> stream5 = Arrays.stream(array);
+        Map<String, Integer> collected3 = stream5.filter(s -> s.length() >= 3)
+                                    .collect(Collectors.toMap(s -> s, String::length));
+        System.out.println(collected3);
+
+        // 그룹화/ 분리 - groupingBy, partitioningBy
+        String [] arr = {"Python", "is", "aweful", "lame", "not", "good"};
+        Map<Integer, List<String>> map = Arrays.stream(arr)
+                                            .collect(Collectors.groupingBy(String::length));
+        System.out.println(map);
+
+        Map<Boolean, List<String>> map2 = Arrays.stream(arr)
+                .collect(Collectors.partitioningBy(s -> s.length() < 4));
+        System.out.println(map2);
+
+        // 그룹화 + Downstream collector
+        // 최종처리 메소드에서 있던 count(), min()... 등과 유사한
+        // Collectors중에도 counting, minBy(), maxBy()... 등이 있다.
+
+        Map<Integer, Long> map3 = Arrays.stream(arr)
+                .collect(Collectors.groupingBy(String::length,
+                                                Collectors.counting()));
+        System.out.println(map3);
+
+        //병렬 스트림
+        Stream<String> parStream = Arrays.stream(arr).parallel();
+        System.out.println(parStream.map(String::length)
+                .count());
+        List<String> list4 = List.of("atet", "bfw", "cajerne", "dggfggg");
+
+        // parallelStream을 사용하면 연산 수서가 달라질 수 있다.
+        Stream<String> stream6 = list4.parallelStream();
+        stream6.map(String::length)
+                .peek(s -> System.out.println("A: " + s))
+                .filter(value -> value > 3)
+                .peek(s -> System.out.println("B: " + s))
+                .forEach(System.out::println);
     }
 }

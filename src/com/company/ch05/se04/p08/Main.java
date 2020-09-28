@@ -10,7 +10,7 @@ import java.util.function.UnaryOperator;
 /**
  * Operator 계열
  * - 입력받은 타입과 동일한 타입의 출력을 하는 함수형 인터페이스
- * - Function 계여로가 달리 입출력 타입이 다를 수 없다.
+ * - Function 계열과 달리 입출력 타입이 다를 수 없다.
  */
 public class Main {
     public static void main(String[] args) {
