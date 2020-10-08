@@ -114,87 +114,87 @@ public class Main {
 //            e.printStackTrace();
 //        }
 
-        String filePath = "D:" + File.separator + "Temp" + File.separator + "MyTemp";
-        System.out.println(filePath);
-
-        File fileOne = new File(filePath); // path만 표현 (not File)
-        System.out.println(fileOne.mkdir()); // 가장 하위 폴더만 생성 (상위 폴더가 없으면 실패)
-        System.out.println(fileOne.mkdirs()); // 경로에 있는 모든 폴더를 생성
-
-        File fileTwo = new File(filePath, "file2.txt");
-        fileTwo.createNewFile();
-
-        File fileThree = new File(fileOne, "file3.txt");
-        fileThree.createNewFile();
-
-        File fileFour = new File(new URI("file:///d:/Temp/MyTemp/file4.txt"));
-        fileFour.createNewFile();
-        fileFour.deleteOnExit(); // Temp 파일을 사용할 때 유용
-
-        System.out.println(fileTwo.getName());
-        System.out.println(fileTwo.getParent());
-        System.out.println(fileTwo.isAbsolute()); // 절대 경로를 사용 하는지?
-
-        System.out.println(fileTwo.getAbsolutePath());
-        System.out.println(fileTwo.getCanonicalPath()); // .. 등을 모두 배제한 표준 표현법 사용
-
-        System.out.println(fileOne.isDirectory());
-        System.out.println(fileTwo.isFile());
-
-        System.out.println(Arrays.toString(fileOne.list())); // String Array로 출력
-        System.out.println(Arrays.toString(fileOne.listFiles())); // File 객체 Array로 출력
-
-        File srcFile = new File(fileOne, "src.txt");
-        File dstFile = new File(fileOne, "dst.txt");
-        dstFile.createNewFile();
-
-        // Stream을 이용한 파일의 복사 (byte단위)
-        try (InputStream src = new FileInputStream(srcFile);
-             OutputStream dst = new FileOutputStream(dstFile)) {
-            int read = -1;
-            while((read = src.read()) != -1) {
-                dst.write(read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try (InputStream src = new FileInputStream(srcFile);
-             OutputStream dst = new FileOutputStream(dstFile)) {
-            int read = 0;
-            byte [] buff = new byte[4];
-            while((read = src.read(buff)) > 0) {
-                dst.write(buff, 0, read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Reader를 이용한 파일의 복사 (char단위)
-        try (FileReader src = new FileReader(srcFile);
-             FileWriter dst = new FileWriter(dstFile)) {
-            int read = -1;
-            while((read = src.read()) != -1) {
-                dst.write(read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        String filePath = "D:" + File.separator + "Temp" + File.separator + "MyTemp";
+//        System.out.println(filePath);
+//
+//        File fileOne = new File(filePath); // path만 표현 (not File)
+//        System.out.println(fileOne.mkdir()); // 가장 하위 폴더만 생성 (상위 폴더가 없으면 실패)
+//        System.out.println(fileOne.mkdirs()); // 경로에 있는 모든 폴더를 생성
+//
+//        File fileTwo = new File(filePath, "file2.txt");
+//        fileTwo.createNewFile();
+//
+//        File fileThree = new File(fileOne, "file3.txt");
+//        fileThree.createNewFile();
+//
+//        File fileFour = new File(new URI("file:///d:/Temp/MyTemp/file4.txt"));
+//        fileFour.createNewFile();
+//        fileFour.deleteOnExit(); // Temp 파일을 사용할 때 유용
+//
+//        System.out.println(fileTwo.getName());
+//        System.out.println(fileTwo.getParent());
+//        System.out.println(fileTwo.isAbsolute()); // 절대 경로를 사용 하는지?
+//
+//        System.out.println(fileTwo.getAbsolutePath());
+//        System.out.println(fileTwo.getCanonicalPath()); // .. 등을 모두 배제한 표준 표현법 사용
+//
+//        System.out.println(fileOne.isDirectory());
+//        System.out.println(fileTwo.isFile());
+//
+//        System.out.println(Arrays.toString(fileOne.list())); // String Array로 출력
+//        System.out.println(Arrays.toString(fileOne.listFiles())); // File 객체 Array로 출력
+//
+//        File srcFile = new File(fileOne, "src.txt");
+//        File dstFile = new File(fileOne, "dst.txt");
+//        dstFile.createNewFile();
+//
+//        // Stream을 이용한 파일의 복사 (byte단위)
+//        try (InputStream src = new FileInputStream(srcFile);
+//             OutputStream dst = new FileOutputStream(dstFile)) {
+//            int read = -1;
+//            while((read = src.read()) != -1) {
+//                dst.write(read);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        try (InputStream src = new FileInputStream(srcFile);
+//             OutputStream dst = new FileOutputStream(dstFile)) {
+//            int read = 0;
+//            byte [] buff = new byte[4];
+//            while((read = src.read(buff)) > 0) {
+//                dst.write(buff, 0, read);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        // Reader를 이용한 파일의 복사 (char단위)
+//        try (FileReader src = new FileReader(srcFile);
+//             FileWriter dst = new FileWriter(dstFile)) {
+//            int read = -1;
+//            while((read = src.read()) != -1) {
+//                dst.write(read);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         // append = true로 FileWriter를 생성하면 이어서 작성 (txt, ini, properties, ..)
         // binary파일에는 잘 사용하지 않음
         // binary 파일 - 문자열로 작성된 것이 아닌, decoding이 된 상태의 파일
         // 그림파일, 동영상파일, exe파일 ...
-        try (FileReader src = new FileReader(srcFile);
-             FileWriter dst = new FileWriter(dstFile, true)) {
-            int read = 0;
-            char [] buff = new char[4];
-            while((read = src.read(buff)) > 0) {
-                dst.write(buff, 0, read);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try (FileReader src = new FileReader(srcFile);
+//             FileWriter dst = new FileWriter(dstFile, true)) {
+//            int read = 0;
+//            char [] buff = new char[4];
+//            while((read = src.read(buff)) > 0) {
+//                dst.write(buff, 0, read);
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
         // 보조스트림
         // Node에 직접 연결되지 않고, 스트림에 부가적으로 사용되는 스트림
@@ -233,17 +233,84 @@ public class Main {
         // readBoolean, readByte, readShort ... readUTF(String)
         // writeBoolean, writeByte, writeShort ... writeUTF(String)
 
-        File src = new File("D:/Temp/MyTemp/data.dat");
-        DataOutputStream out = new DataOutputStream(new FileOutputStream(src));
-        out.writeUTF("자바왕");
-        out.writeInt(128);
-        out.writeFloat(523.411f);
+//        File src = new File("D:/Temp/MyTemp/data.dat");
+//        DataOutputStream out = new DataOutputStream(new FileOutputStream(src));
+//        out.writeUTF("자바왕");
+//        out.writeInt(128);
+//        out.writeFloat(523.411f);
+//
+//        DataInputStream in = new DataInputStream(new FileInputStream(src));
+//        String str = in.readUTF();
+//        int integer = in.readInt();
+//        float floatVal = in.readFloat();
+//
+//        System.out.println(str + " " + integer + " " + floatVal);
 
-        DataInputStream in = new DataInputStream(new FileInputStream(src));
-        String str = in.readUTF();
-        int integer = in.readInt();
-        float floatVal = in.readFloat();
+        // 객체 직렬화를 위한 인터페이스 - Serializable
+        // 구조화된 객체를 일렬의 데이터로 변환 -> Serializable
+        // 일렬의 데이터를 구조화된 객체로 변환 -> Deserializable
+        // 맴버 변수에 다른 객체가 있을 때 그 객체의 클래스도 Serializable 해야한다
+        class Foo implements Serializable {
+            static  final  long serialVersionUID = 1L; // 클래스 버전 관리
+            // 객체를 저장할 때와 불러올 때 같은지 체크하여 serialVersionUID가 일치하지 않으면 실패
 
-        System.out.println(str + " " + integer + " " + floatVal);
+            String userName;
+            int userID;
+
+            transient String password;
+            // Serialize에 포함되지 않음 (저장/불러오기 대상에서 제외)
+
+            public Foo() {}
+
+            public Foo(String userName, int userID, String password) {
+                this.userName = userName;
+                this.userID = userID;
+                this.password = password;
+            }
+
+            @Override public String toString() {
+                return userName + " " + userID + " " + password;
+            }
+        }
+
+        Foo foo = new Foo("OutSider", 1423, "negazeilzalnaga");
+        System.out.println(foo);
+
+        File dst = new File("/Users/kimyechan/work/study/JavaBasic/fileFolder/obj.data");
+
+        try(ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(dst));
+                ObjectInputStream in = new ObjectInputStream(new FileInputStream(dst));) {
+            out.writeObject(foo);
+            Object read = in.readObject();
+            if (read != null && read instanceof Foo){
+                Foo readFoo = (Foo)read;
+                System.out.println(readFoo);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // 부모는 Serializable 하지 않을 때
+        // 자식 클래스를 Serializable하게 구현하기
+        class ParentFoo {
+            int memVarOne;
+            double memVarTwo;
+        }
+
+        class ChildFoo extends ParentFoo implements Serializable {
+            int childMember;
+
+            private void writeObject(ObjectOutputStream out) throws IOException{
+                out.writeInt(memVarOne);
+//                out.writeDouble(memVarTwo); //transient 대신 그냥 원하는 것만 표시
+                out.defaultWriteObject();
+            }
+
+            private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException{
+                memVarOne = in.readInt();
+//                memVarTwo = in.readDouble();
+                in.defaultReadObject();
+            }
+        }
     }
 }
