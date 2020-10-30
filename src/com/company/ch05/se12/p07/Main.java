@@ -15,7 +15,7 @@ public class Main {
         Semaphore sem = new Semaphore(1);
 
         sem.release(10);
-
+        sem.tryAcquire();
         System.out.println(sem.availablePermits());
 
 //        try { // Blocking으로 동작

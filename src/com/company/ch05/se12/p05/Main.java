@@ -50,7 +50,7 @@ class Counter {
 //        return count;
 //    }
 //}
-
+//
 //// 4. 메소드에 synchronized 키워드 사용
 ////  synchronized 키워드가 사용된 메소드를 호출하기 위해서는
 //// 해당 객체를 소유해야만 호출이 가능. 소유하지 못하면 Blocking
